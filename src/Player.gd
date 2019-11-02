@@ -12,30 +12,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta : float) -> void:
-	#var t : = Vector2()
-	
-	#velocity = (targetPosition - position).normalized() * speed
-	
-	#if velocity.length() > 0:
-	#	playAnimation(velocity.normalized())
-	#else:
-	#	animationPlayer.stop()
-	
-	#if(position.distance_to(targetPosition) < speed * delta):
-	#	position = targetPosition
-	#else:
-	#	position += velocity * delta 
-	
-	#print(targetPosition)
-	
-	#move_and_slide(targetPosition.normalized() * speed, Vector2())
-	
-	#var motion : = Vector2()
-	#motion.x = int(Input.get_action_strength("ui_right")) - int(Input.get_action_strength("ui_left"))
-	#motion.y = int(Input.get_action_strength("ui_down")) - int(Input.get_action_strength("ui_up"))
-	
-	#print((targetPosition - position).normalized())
-	
 	var moveTo := Vector2()
 	
 	if(position.distance_to(targetPosition) > 0.5):
@@ -50,7 +26,6 @@ func _physics_process(delta : float) -> void:
 
 
 func _unhandled_input(event : InputEvent) -> void:
-	
 	var direction : Vector2
 	
 	if position.distance_to(targetPosition) > 4:
