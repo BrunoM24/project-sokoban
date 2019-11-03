@@ -14,21 +14,26 @@ func _ready() -> void:
 func _physics_process(delta : float) -> void:
 	var moveTo := Vector2()
 	
-	if(position.distance_to(targetPosition) > 0.5):
+	if position.distance_to(targetPosition) > 1:
 		moveTo = (targetPosition - position).normalized()
+	else:
+		position = position.snapped(Vector2(128, 128))
 	
-	if(moveTo != Vector2.ZERO):
+	if moveTo != Vector2.ZERO:
 		playAnimation(moveTo)
 	else:
 		animationPlayer.stop()
 	
 	move_and_slide(moveTo * speed)
+	
+	if get_slide_count() > 0:
+		checkBoxCollision(moveTo)
 
 
 func _unhandled_input(event : InputEvent) -> void:
 	var direction : Vector2
 	
-	if position.distance_to(targetPosition) > 4:
+	if position.distance_to(targetPosition) > 1:
 		return
 	
 	if event.is_action_pressed("ui_up"):
@@ -42,8 +47,8 @@ func _unhandled_input(event : InputEvent) -> void:
 	else:
 		direction = Vector2.ZERO
 	
-	if !test_move(transform, direction * 64):
-		targetPosition = position + direction * speed
+	#if !test_move(transform, direction * 127):
+	targetPosition = position.snapped(Vector2(128, 128)) + direction * speed
 
 
 func playAnimation(direction : Vector2) -> void:
@@ -60,4 +65,15 @@ func playAnimation(direction : Vector2) -> void:
 			animation = "walk_left"
 	
 	animationPlayer.play(animation)
+
+
+func checkBoxCollision(motion : Vector2) -> void:
+	var box := get_slide_collision(0).collider as Box
+	
+	if box:
+		if box.canMove(motion):
+			box.push(motion * speed)
+			return
+	
+	targetPosition = position.snapped(Vector2(128, 128))
 
