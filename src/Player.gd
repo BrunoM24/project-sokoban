@@ -1,13 +1,63 @@
 extends KinematicBody2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var speed := 128
+var targetPosition := Vector2()
+var velocity := Vector2()
+
+onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _ready() -> void:
+	targetPosition = position
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func _physics_process(delta : float) -> void:
+	var moveTo := Vector2()
+	
+	if(position.distance_to(targetPosition) > 0.5):
+		moveTo = (targetPosition - position).normalized()
+	
+	if(moveTo != Vector2.ZERO):
+		playAnimation(moveTo)
+	else:
+		animationPlayer.stop()
+	
+	move_and_slide(moveTo * speed)
+
+
+func _unhandled_input(event : InputEvent) -> void:
+	var direction : Vector2
+	
+	if position.distance_to(targetPosition) > 4:
+		return
+	
+	if event.is_action_pressed("ui_up"):
+		direction = Vector2.UP
+	elif event.is_action_pressed("ui_right"):
+		direction = Vector2.RIGHT
+	elif event.is_action_pressed("ui_down"):
+		direction = Vector2.DOWN
+	elif event.is_action_pressed("ui_left"):
+		direction = Vector2.LEFT
+	else:
+		direction = Vector2.ZERO
+	
+	if !test_move(transform, direction * 64):
+		targetPosition = position + direction * speed
+
+
+func playAnimation(direction : Vector2) -> void:
+	var animation : String
+	
+	match direction:
+		Vector2.UP:
+			animation = "walk_up"
+		Vector2.RIGHT:
+			animation = "walk_right"
+		Vector2.DOWN:
+			animation = "walk_down"
+		Vector2.LEFT:
+			animation = "walk_left"
+	
+	animationPlayer.play(animation)
+
