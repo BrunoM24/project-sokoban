@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 var speed := 128
 var targetPosition := Vector2()
-var velocity := Vector2()
 
 onready var animationPlayer : AnimationHandler = $AnimationPlayer
 
@@ -24,27 +23,6 @@ func _physics_process(delta : float) -> void:
 	if get_slide_count() > 0:
 		checkBoxCollision(moveTo)
 
-
-func _unhandled_input(event : InputEvent) -> void:
-	var direction : Vector2
-	
-	if position.distance_to(targetPosition) > 1:
-		return
-	
-	if event.is_action_pressed("ui_up"):
-		direction = Vector2.UP
-	elif event.is_action_pressed("ui_right"):
-		direction = Vector2.RIGHT
-	elif event.is_action_pressed("ui_down"):
-		direction = Vector2.DOWN
-	elif event.is_action_pressed("ui_left"):
-		direction = Vector2.LEFT
-	else:
-		direction = Vector2.ZERO
-	
-	#if !test_move(transform, direction * 127):
-	targetPosition = position.snapped(Vector2(128, 128)) + direction * speed
-
 func checkBoxCollision(motion : Vector2) -> void:
 	var box := get_slide_collision(0).collider as Box
 	
@@ -55,3 +33,26 @@ func checkBoxCollision(motion : Vector2) -> void:
 	
 	targetPosition = position.snapped(Vector2(128, 128))
 
+
+func _unhandled_input(event : InputEvent) -> void:
+	if position.distance_to(targetPosition) > 1:
+		return
+	
+	var direction := getDirectionBasedOnInput(event)
+	
+	#if !test_move(transform, direction * 127):
+	targetPosition = position.snapped(Vector2(128, 128)) + direction * speed
+
+"""
+Using the provided event, check which direction should the player move
+"""
+func getDirectionBasedOnInput(event : InputEvent) -> Vector2:
+	if event.is_action_pressed("ui_up"):
+		return Vector2.UP
+	elif event.is_action_pressed("ui_right"):
+		return Vector2.RIGHT
+	elif event.is_action_pressed("ui_down"):
+		return Vector2.DOWN
+	elif event.is_action_pressed("ui_left"):
+		return Vector2.LEFT
+	return Vector2.ZERO;
