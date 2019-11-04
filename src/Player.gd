@@ -1,71 +1,28 @@
 extends KinematicBody2D
 
+var tileSize := 128;
 var speed := 128
 var targetPosition := Vector2()
-var velocity := Vector2()
 
-onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+onready var animationPlayer : AnimationHandler = $AnimationPlayer
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	targetPosition = position
 
-
 func _physics_process(delta : float) -> void:
-	var moveTo := Vector2()
+	var moveTo := Vector2.ZERO
 	
-	if position.distance_to(targetPosition) > 1:
+	if isMoving():
 		moveTo = (targetPosition - position).normalized()
 	else:
-		position = position.snapped(Vector2(128, 128))
+		position = position.snapped(Vector2(tileSize, tileSize))
 	
-	if moveTo != Vector2.ZERO:
-		playAnimation(moveTo)
-	else:
-		animationPlayer.stop()
+	animationPlayer.handleAnimation(moveTo);
 	
 	move_and_slide(moveTo * speed)
 	
 	if get_slide_count() > 0:
 		checkBoxCollision(moveTo)
-
-
-func _unhandled_input(event : InputEvent) -> void:
-	var direction : Vector2
-	
-	if position.distance_to(targetPosition) > 1:
-		return
-	
-	if event.is_action_pressed("ui_up"):
-		direction = Vector2.UP
-	elif event.is_action_pressed("ui_right"):
-		direction = Vector2.RIGHT
-	elif event.is_action_pressed("ui_down"):
-		direction = Vector2.DOWN
-	elif event.is_action_pressed("ui_left"):
-		direction = Vector2.LEFT
-	else:
-		direction = Vector2.ZERO
-	
-	#if !test_move(transform, direction * 127):
-	targetPosition = position.snapped(Vector2(128, 128)) + direction * speed
-
-
-func playAnimation(direction : Vector2) -> void:
-	var animation : String
-	
-	match direction:
-		Vector2.UP:
-			animation = "walk_up"
-		Vector2.RIGHT:
-			animation = "walk_right"
-		Vector2.DOWN:
-			animation = "walk_down"
-		Vector2.LEFT:
-			animation = "walk_left"
-	
-	animationPlayer.play(animation)
-
 
 func checkBoxCollision(motion : Vector2) -> void:
 	var box := get_slide_collision(0).collider as Box
@@ -75,5 +32,31 @@ func checkBoxCollision(motion : Vector2) -> void:
 			box.push(motion * speed)
 			return
 	
-	targetPosition = position.snapped(Vector2(128, 128))
+	targetPosition = position.snapped(Vector2(tileSize, tileSize))
 
+func _unhandled_input(event : InputEvent) -> void:
+	#If we are moving, we can't press any key
+	if isMoving():
+		return
+	
+	var direction := getDirectionBasedOnInput(event)
+	
+	#if !test_move(transform, direction * 127):
+	targetPosition = position.snapped(Vector2(tileSize, tileSize)) + direction * speed
+
+func isMoving() -> bool:
+	return position.distance_to(targetPosition) > 1
+
+"""
+Using the provided event, check which direction should the player move
+"""
+func getDirectionBasedOnInput(event : InputEvent) -> Vector2:
+	if event.is_action_pressed("ui_up"):
+		return Vector2.UP
+	elif event.is_action_pressed("ui_right"):
+		return Vector2.RIGHT
+	elif event.is_action_pressed("ui_down"):
+		return Vector2.DOWN
+	elif event.is_action_pressed("ui_left"):
+		return Vector2.LEFT
+	return Vector2.ZERO;

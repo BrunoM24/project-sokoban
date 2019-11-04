@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Player.gd" type="Script" id=1]
 [ext_resource path="res://resources/sokoban_tilesheet@2.png" type="Texture" id=2]
+[ext_resource path="res://src/scripts/AnimationHandler.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 63, 63 )
@@ -95,3 +96,4 @@ anims/walk_down = SubResource( 2 )
 anims/walk_left = SubResource( 3 )
 anims/walk_right = SubResource( 4 )
 anims/walk_up = SubResource( 5 )
+script = ExtResource( 3 )
