@@ -23,12 +23,12 @@ func _physics_process(delta : float) -> void:
 	if get_slide_count() > 0:
 		checkBoxCollision(moveTo)
 
-func checkBoxCollision(moveTo : Vector2) -> void:
+func checkBoxCollision(motion : Vector2) -> void:
 	var box := get_slide_collision(0).collider as Box
 	
 	if box:
-		if box.canMove(moveTo):
-			box.push(moveTo * speed)
+		if box.canMove(motion):
+			box.push(motion * speed)
 			return
 	
 	targetPosition = position.snapped(Vector2(Constants.TILE_SIZE, Constants.TILE_SIZE))
