@@ -3,6 +3,7 @@ extends AnimationPlayer
 class_name AnimationHandler
 
 func handleAnimation(destinationVector: Vector2) -> void:
+	destinationVector = destinationVector.round()
 	if (destinationVector == Vector2.ZERO):
 		stop()
 	else:
