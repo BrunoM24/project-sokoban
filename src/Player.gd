@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var tileSize := 128;
 var speed := 128
 var targetPosition := Vector2()
 
@@ -9,12 +10,12 @@ func _ready() -> void:
 	targetPosition = position
 
 func _physics_process(delta : float) -> void:
-	var moveTo := Vector2()
+	var moveTo := Vector2.ZERO
 	
-	if position.distance_to(targetPosition) > 1:
+	if isMoving():
 		moveTo = (targetPosition - position).normalized()
 	else:
-		position = position.snapped(Vector2(128, 128))
+		position = position.snapped(Vector2(tileSize, tileSize))
 	
 	animationPlayer.handleAnimation(moveTo);
 	
@@ -31,17 +32,20 @@ func checkBoxCollision(motion : Vector2) -> void:
 			box.push(motion * speed)
 			return
 	
-	targetPosition = position.snapped(Vector2(128, 128))
-
+	targetPosition = position.snapped(Vector2(tileSize, tileSize))
 
 func _unhandled_input(event : InputEvent) -> void:
-	if position.distance_to(targetPosition) > 1:
+	#If we are moving, we can't press any key
+	if isMoving():
 		return
 	
 	var direction := getDirectionBasedOnInput(event)
 	
 	#if !test_move(transform, direction * 127):
-	targetPosition = position.snapped(Vector2(128, 128)) + direction * speed
+	targetPosition = position.snapped(Vector2(tileSize, tileSize)) + direction * speed
+
+func isMoving() -> bool:
+	return position.distance_to(targetPosition) > 1
 
 """
 Using the provided event, check which direction should the player move

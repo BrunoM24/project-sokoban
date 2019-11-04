@@ -4,7 +4,7 @@ class_name AnimationHandler
 
 func handleAnimation(destinationVector: Vector2) -> void:
 	if (destinationVector == Vector2.ZERO):
-		stop(true)
+		stop()
 	else:
 		play(DIRECTION_KEYS.get(destinationVector));
 
