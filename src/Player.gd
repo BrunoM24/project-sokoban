@@ -1,9 +1,6 @@
 extends KinematicBody2D
 
-const FPS := 60
-
-var tileSize := 128
-var speed := 512 * FPS
+var speed := 512
 var targetPosition := Vector2()
 
 onready var animationPlayer : AnimationHandler = $AnimationPlayer
@@ -17,24 +14,24 @@ func _physics_process(delta : float) -> void:
 	if isMoving():
 		moveTo = (targetPosition - position).normalized()
 	else:
-		position = position.snapped(Vector2(tileSize, tileSize))
+		position = position.snapped(Vector2(Constants.TILE_SIZE, Constants.TILE_SIZE))
 	
 	animationPlayer.handleAnimation(moveTo);
 	
-	move_and_slide(moveTo * speed * delta)
+	move_and_slide(moveTo * speed)
 	
 	if get_slide_count() > 0:
-		checkBoxCollision(moveTo, delta)
+		checkBoxCollision(moveTo)
 
-func checkBoxCollision(moveTo : Vector2, delta : float) -> void:
+func checkBoxCollision(moveTo : Vector2) -> void:
 	var box := get_slide_collision(0).collider as Box
 	
 	if box:
 		if box.canMove(moveTo):
-			box.push(moveTo * speed * delta)
+			box.push(moveTo * speed)
 			return
 	
-	targetPosition = position.snapped(Vector2(tileSize, tileSize))
+	targetPosition = position.snapped(Vector2(Constants.TILE_SIZE, Constants.TILE_SIZE))
 
 func _unhandled_input(event : InputEvent) -> void:
 	#If we are moving, we can't press any key
@@ -44,7 +41,7 @@ func _unhandled_input(event : InputEvent) -> void:
 	var direction := getDirectionBasedOnInput(event)
 	
 	#if !test_move(transform, direction * 127):
-	targetPosition = position.snapped(Vector2(tileSize, tileSize)) + direction * tileSize
+	targetPosition = position.snapped(Vector2(Constants.TILE_SIZE, Constants.TILE_SIZE)) + direction * Constants.TILE_SIZE
 
 func isMoving() -> bool:
 	return position.distance_to(targetPosition) > 4
