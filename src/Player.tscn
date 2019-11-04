@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/Player.gd" type="Script" id=1]
 [ext_resource path="res://resources/sokoban_tilesheet@2.png" type="Texture" id=2]
@@ -7,8 +7,75 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 63, 63 )
 
+[sub_resource type="Animation" id=6]
+resource_name = "idle_down"
+length = 0.5
+step = 0.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 65 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "idle_left"
+length = 0.5
+step = 0.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -3.15, 0 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 68, 94 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "idle_right"
+length = 0.5
+step = 0.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -3.15, -0.0554732, -0.0303101, 0 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 68, 94, 93, 93 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle_up"
+length = 0.5
+step = 0.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -3.15, 0 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 68, 68 ]
+}
+
 [sub_resource type="Animation" id=2]
-length = 1.5
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -18,14 +85,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 65, 66, 67 ]
+"values": [ 66, 67 ]
 }
 
 [sub_resource type="Animation" id=3]
-length = 1.5
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -35,14 +101,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 94, 95, 96 ]
+"values": [ 95, 96 ]
 }
 
 [sub_resource type="Animation" id=4]
-length = 1.5
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -52,14 +117,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 91, 92, 93 ]
+"values": [ 91, 92 ]
 }
 
 [sub_resource type="Animation" id=5]
-length = 1.5
 loop = true
 step = 0.5
 tracks/0/type = "value"
@@ -69,10 +133,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 68, 69, 70 ]
+"values": [ 69, 70 ]
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -84,14 +148,21 @@ texture = ExtResource( 2 )
 centered = false
 vframes = 8
 hframes = 13
-frame = 65
+frame = 94
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 64, 64 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle_down"
+playback_process_mode = 0
 playback_speed = 3.0
+anims/idle_down = SubResource( 6 )
+anims/idle_left = SubResource( 8 )
+anims/idle_right = SubResource( 9 )
+anims/idle_up = SubResource( 7 )
 anims/walk_down = SubResource( 2 )
 anims/walk_left = SubResource( 3 )
 anims/walk_right = SubResource( 4 )
