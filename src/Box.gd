@@ -3,7 +3,7 @@ class_name Box
 
 onready var tween : Tween = $Tween
 
-export var slidingTime := 1.5
+export var slidingTime := 1
 
 var tilemap : TileMap
 var sliding := false
@@ -18,9 +18,7 @@ func initialized(_tilemap : TileMap) -> void:
 
 
 func calculateDestination(direction : Vector2) -> Vector2:
-	print(position)
 	var t = position.snapped(Vector2(128, 128)) + direction * 128
-	print(t)
 	return t
 
 
@@ -30,6 +28,7 @@ func push(velocity : Vector2) -> void:
 	
 	var moveTo := calculateDestination(velocity.normalized())
 	
+	print(moveTo)
 	if tMove(moveTo):
 		print("canMove started")
 		tween.interpolate_property(self, "global_position", global_position, moveTo, slidingTime, Tween.TRANS_CUBIC, Tween.EASE_OUT)
