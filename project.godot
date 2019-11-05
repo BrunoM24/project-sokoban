@@ -30,9 +30,14 @@ config/name="Project Sokoban"
 run/main_scene="res://src/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Constants="*res://src/scripts/Constants.gd"
+
 [display]
 
-window/size/height=640
+window/size/width=1408
+window/size/height=896
 
 [rendering]
 
