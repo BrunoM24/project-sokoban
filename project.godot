@@ -32,7 +32,8 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/height=640
+window/size/width=1408
+window/size/height=896
 
 [rendering]
 
