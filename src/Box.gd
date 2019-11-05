@@ -11,15 +11,17 @@ var sliding := false
 func _ready():
 	position = calculateDestination(Vector2())
 
-
+"""
+	Not being used, to use in the futere if needed
+	to be caled from the tilemap
+"""
 func initialized(_tilemap : TileMap) -> void:
 	tilemap = _tilemap
 	position = calculateDestination(Vector2())
 
 
 func calculateDestination(direction : Vector2) -> Vector2:
-	var t = position.snapped(Vector2(128, 128)) + direction * 128
-	return t
+	return position.snapped(Vector2(Constants.TILE_SIZE, Constants.TILE_SIZE)) + direction * Constants.TILE_SIZE
 
 
 func push(velocity : Vector2) -> void:
@@ -28,16 +30,12 @@ func push(velocity : Vector2) -> void:
 	
 	var moveTo := calculateDestination(velocity.normalized())
 	
-	print(moveTo)
 	if tMove(moveTo):
-		print("canMove started")
 		tween.interpolate_property(self, "global_position", global_position, moveTo, slidingTime, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 		tween.start()
 		sliding = true
 		yield(tween, "tween_completed")
 		sliding = false
-	
-	#move_and_slide(velocity, Vector2())
 
 
 func canMove(to : Vector2) -> bool:
@@ -45,6 +43,6 @@ func canMove(to : Vector2) -> bool:
 
 
 func tMove(to : Vector2) -> bool:
-	var t := Transform2D(transform)
-	t.origin = to
-	return not test_move(t, Vector2())
+	var newTransform := Transform2D(transform)
+	newTransform.origin = to
+	return not test_move(newTransform, Vector2())
