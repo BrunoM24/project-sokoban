@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/World.gd" type="Script" id=1]
 [ext_resource path="res://resources/ground_04.png" type="Texture" id=2]
 [ext_resource path="res://resources/sokoban_tilesheet@2.png" type="Texture" id=3]
 [ext_resource path="res://src/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/Box.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/Platform.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/WinPopup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/WinPopup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/boxes/PlasticBox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/boxes/WoodenBox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/plataforms/PlasticPlatform.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/plataforms/WoodenPlatform.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
@@ -57,13 +59,18 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 128, 256 )
 
-[node name="Box" parent="." instance=ExtResource( 5 )]
-position = Vector2( 256, 512 )
-
-[node name="Platform" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1152, 128 )
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="WinPopup" parent="CanvasLayer" instance=ExtResource( 7 )]
-[connection signal="gameWon" from="Platform" to="." method="_on_Platform_gameWon"]
+[node name="WinPopup" parent="CanvasLayer" instance=ExtResource( 5 )]
+
+[node name="PlasticBox" parent="." instance=ExtResource( 6 )]
+position = Vector2( 256, 512 )
+
+[node name="WoodenBox" parent="." instance=ExtResource( 7 )]
+position = Vector2( 256, 256 )
+
+[node name="PlasticPlatform" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1152, 128 )
+
+[node name="WoodenPlatform" parent="." instance=ExtResource( 9 )]
+position = Vector2( 512, 128 )

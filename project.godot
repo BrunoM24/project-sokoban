@@ -33,11 +33,14 @@ config/icon="res://icon.png"
 [autoload]
 
 Constants="*res://src/scripts/Constants.gd"
+Events="*res://src/scripts/Events.gd"
 
 [display]
 
 window/size/width=1408
 window/size/height=896
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [rendering]
 
