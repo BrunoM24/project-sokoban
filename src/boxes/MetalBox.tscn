@@ -4,5 +4,7 @@
 
 [node name="MetalBox" instance=ExtResource( 1 )]
 
+collision_mask = 8
+
 [node name="Sprite" parent="." index="0"]
 region_rect = Rect2( 1280, 0, 128, 128 )
