@@ -3,6 +3,7 @@
 [ext_resource path="res://src/Box.tscn" type="PackedScene" id=1]
 
 [node name="MetalBox" instance=ExtResource( 1 )]
+
 collision_mask = 8
 
 [node name="Sprite" parent="." index="0"]
