@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/BaseLevel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/plataforms/WoodenPlatform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/boxes/WoodenBox.tscn" type="PackedScene" id=3]
+
+[node name="Level_7" instance=ExtResource( 1 )]
+wallType = 0
+floorType = 0
+plataformsRequired = 8
+
+[node name="TileMap" parent="." index="1"]
+tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 65536, 1, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 1, 0, 131072, 1, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 1, 0, 196608, 1, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 1, 0, 262144, 1, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 1, 0, 327680, 1, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 1, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0 )
+
+[node name="WoodenPlatform" parent="." index="2" instance=ExtResource( 2 )]
+position = Vector2( 128, 640 )
+
+[node name="WoodenPlatform2" parent="." index="3" instance=ExtResource( 2 )]
+position = Vector2( 256, 640 )
+
+[node name="WoodenPlatform3" parent="." index="4" instance=ExtResource( 2 )]
+position = Vector2( 128, 128 )
+
+[node name="WoodenPlatform4" parent="." index="5" instance=ExtResource( 2 )]
+position = Vector2( 128, 256 )
+
+[node name="WoodenPlatform5" parent="." index="6" instance=ExtResource( 2 )]
+position = Vector2( 1152, 640 )
+
+[node name="WoodenPlatform6" parent="." index="7" instance=ExtResource( 2 )]
+position = Vector2( 1152, 512 )
+
+[node name="WoodenPlatform7" parent="." index="8" instance=ExtResource( 2 )]
+position = Vector2( 1152, 128 )
+
+[node name="WoodenPlatform8" parent="." index="9" instance=ExtResource( 2 )]
+position = Vector2( 1024, 128 )
+
+[node name="WoodenBox" parent="." index="10" instance=ExtResource( 3 )]
+position = Vector2( 640, 640 )
+
+[node name="WoodenBox2" parent="." index="11" instance=ExtResource( 3 )]
+position = Vector2( 640, 512 )
+
+[node name="WoodenBox3" parent="." index="12" instance=ExtResource( 3 )]
+position = Vector2( 1024, 384 )
+
+[node name="WoodenBox4" parent="." index="13" instance=ExtResource( 3 )]
+position = Vector2( 896, 384 )
+
+[node name="WoodenBox5" parent="." index="14" instance=ExtResource( 3 )]
+position = Vector2( 640, 256 )
+
+[node name="WoodenBox6" parent="." index="15" instance=ExtResource( 3 )]
+position = Vector2( 640, 128 )
+
+[node name="WoodenBox7" parent="." index="16" instance=ExtResource( 3 )]
+position = Vector2( 256, 384 )
+
+[node name="WoodenBox8" parent="." index="17" instance=ExtResource( 3 )]
+position = Vector2( 384, 384 )

@@ -1,13 +1,10 @@
 extends Control
 
-onready var optionsPopup = $PopupPanel
-
-func _ready():
-	pass
+onready var optionsPopup := $PopupPanel
 
 
 func _on_PlayButton_pressed():
-	get_tree().change_scene("res://src/World.tscn")
+	get_tree().change_scene("res://src/LevelSelection.tscn")
 
 
 func _on_OptionsButton_pressed():

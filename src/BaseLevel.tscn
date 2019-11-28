@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/BaseLevel.gd" type="Script" id=1]
+[ext_resource path="res://resources/ground_04.png" type="Texture" id=2]
+[ext_resource path="res://resources/Tilmap.tres" type="TileSet" id=3]
+[ext_resource path="res://src/TileMap.gd" type="Script" id=4]
+
+[node name="BaseLevel" type="Node2D"]
+script = ExtResource( 1 )
+wallType = 2
+floorType = 2
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 128.0
+margin_bottom = 128.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 128, 128 )
+format = 1
+script = ExtResource( 4 )

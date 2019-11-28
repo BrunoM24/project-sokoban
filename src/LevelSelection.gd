@@ -12,5 +12,7 @@ func _ready():
 func onLevelSelected(levelButton: LevelButton) -> void:
 	levelButtonSelected = levelButton
 
-func _on_Button_pressed():
-	get_tree().change_scene_to(levelButtonSelected.level)
+func _on_PlayButton_pressed():
+	LevelManager.currentLevel = levelButtonSelected.levelID
+	#LevelManager.nextLevel = levelButtonSelected.nextLevel
+	get_tree().change_scene("res://src/GameScene.tscn")
