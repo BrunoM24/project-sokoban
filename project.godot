@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Project Sokoban"
-run/main_scene="res://src/World.tscn"
+run/main_scene="res://src/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -45,6 +45,8 @@ Events="*res://src/scripts/Events.gd"
 
 window/size/width=1408
 window/size/height=896
+window/size/test_width=1920
+window/size/test_height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
