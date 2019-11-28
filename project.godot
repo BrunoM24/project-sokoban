@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Box",
 "language": "GDScript",
 "path": "res://src/Box.gd"
+}, {
+"base": "TextureButton",
+"class": "LevelButton",
+"language": "GDScript",
+"path": "res://src/LevelButton.gd"
 } ]
 _global_script_class_icons={
 "AnimationHandler": "",
-"Box": ""
+"Box": "",
+"LevelButton": ""
 }
 
 [application]
