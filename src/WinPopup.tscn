@@ -91,13 +91,13 @@ margin_right = 275.0
 margin_bottom = 217.0
 alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="BackToMainMenuButton" type="TextureButton" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 85.0
 margin_right = 135.0
 margin_bottom = 50.0
 texture_normal = ExtResource( 4 )
 
-[node name="TextureButton2" type="TextureButton" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="LevelSelectionButton" type="TextureButton" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 139.0
 margin_right = 189.0
 margin_bottom = 50.0
@@ -111,4 +111,6 @@ margin_top = 4.0
 margin_right = -3.0
 margin_bottom = 54.0
 texture_normal = ExtResource( 6 )
+[connection signal="pressed" from="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2/BackToMainMenuButton" to="." method="_on_BackToMainMenuButton_pressed"]
+[connection signal="pressed" from="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer2/LevelSelectionButton" to="." method="_on_LevelSelectionButton_pressed"]
 [connection signal="pressed" from="ClosesButton" to="." method="_on_ClosesButton_pressed"]

@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/scripts/AnimationHandler.gd"
 }, {
+"base": "Node2D",
+"class": "BaseLevel",
+"language": "GDScript",
+"path": "res://src/BaseLevel.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Box",
 "language": "GDScript",
@@ -26,6 +31,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AnimationHandler": "",
+"BaseLevel": "",
 "Box": "",
 "LevelButton": ""
 }
@@ -40,6 +46,7 @@ config/icon="res://icon.png"
 
 Constants="*res://src/scripts/Constants.gd"
 Events="*res://src/scripts/Events.gd"
+LevelManager="*res://src/scripts/LevelManager.gd"
 
 [display]
 

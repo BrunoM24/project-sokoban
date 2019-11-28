@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/BaseLevel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/boxes/WoodenBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/plataforms/WoodenPlatform.tscn" type="PackedScene" id=3]
+
+[node name="Level_1_1" instance=ExtResource( 1 )]
+wallType = 0
+plataformsRequired = 1
+
+[node name="TileMap" parent="." index="1"]
+tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 65536, 1, 0, 65537, 5, 0, 65538, 5, 0, 65539, 5, 0, 65540, 5, 0, 65541, 5, 0, 65542, 5, 0, 65543, 5, 0, 65544, 5, 0, 65545, 5, 0, 65546, 1, 0, 131072, 1, 0, 131073, 5, 0, 131074, 5, 0, 131075, 5, 0, 131076, 5, 0, 131077, 5, 0, 131078, 5, 0, 131079, 5, 0, 131080, 5, 0, 131081, 5, 0, 131082, 1, 0, 196608, 1, 0, 196609, 5, 0, 196610, 5, 0, 196611, 5, 0, 196612, 5, 0, 196613, 5, 0, 196614, 5, 0, 196615, 5, 0, 196616, 5, 0, 196617, 5, 0, 196618, 1, 0, 262144, 1, 0, 262145, 5, 0, 262146, 5, 0, 262147, 5, 0, 262148, 5, 0, 262149, 5, 0, 262150, 5, 0, 262151, 5, 0, 262152, 5, 0, 262153, 5, 0, 262154, 1, 0, 327680, 1, 0, 327681, 5, 0, 327682, 5, 0, 327683, 5, 0, 327684, 5, 0, 327685, 5, 0, 327686, 5, 0, 327687, 5, 0, 327688, 5, 0, 327689, 5, 0, 327690, 1, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0 )
+
+[node name="WoodenBox" parent="." index="2" instance=ExtResource( 2 )]
+position = Vector2( 256, 384 )
+
+[node name="WoodenPlatform" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 1152, 384 )
