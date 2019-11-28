@@ -56,7 +56,7 @@ var levels := {
 		"path": "res://src/levels/Level_9.tscn"
 	},
 	10: {
-		"unlocked": true,
+		"unlocked": false,
 		"completed": false,
 		"path": "res://src/levels/Level_10.tscn"
 	}
